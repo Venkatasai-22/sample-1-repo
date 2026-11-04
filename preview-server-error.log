@@ -1,0 +1,6 @@
+file watcher error: EBUSY: resource busy or locked, watch 'C:\COLORFLU\public\intro\road-reference.png'
+6:03:07 PM [vite] (client) [console.error] THREE.WebGLRenderer: THREE.WebGLRenderer: Error creating WebGL context.
+file watcher error: EBUSY: resource busy or locked, watch 'C:\COLORFLU\docs\intro-sources\walk-throw-original.mp4'
+6:33:12 PM [vite] (client) [console.error] THREE.WebGLRenderer: THREE.WebGLRenderer: Error creating WebGL context.
+6:33:12 PM [vite] (client) [console.error] THREE.WebGLRenderer: THREE.WebGLRenderer: Error creating WebGL context.
+12:52:09 PM [vite] (client) Pre-transform error: Failed to load url /src/intro/Intro.jsx (resolved id: C:/COLORFLU/src/intro/Intro.jsx) in C:/COLORFLU/src/main.jsx. Does the file exist?

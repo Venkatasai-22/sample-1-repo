@@ -1,0 +1,25 @@
+
+  VITE v8.3.5  ready in 724 ms
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: http://192.168.1.12:5174/  WiFi
+  ➜  press h + enter to show help
+5:58:31 PM [vite] (client) page reload src/main.jsx
+6:00:08 PM [vite] (client) page reload src/main.jsx
+6:00:21 PM [vite] (client) page reload src/main.jsx
+6:00:26 PM [vite] (client) hmr update /src/styles.css
+6:02:00 PM [vite] (client) page reload src/intro/Intro.jsx
+6:02:03 PM [vite] (client) hmr update /src/intro/intro.css
+6:03:04 PM [vite] (client) page reload src/intro/Intro.jsx
+6:25:09 PM [vite] (client) page reload src/intro/Intro.jsx
+6:25:10 PM [vite] (client) hmr update /src/intro/intro.css
+6:28:08 PM [vite] (client) page reload tests/intro-review.html
+6:29:55 PM [vite] (client) page reload tests/intro-review.html
+6:30:38 PM [vite] (client) page reload src/intro/FilmSurface.js
+6:32:07 PM [vite] (client) page reload src/intro/FilmSurface.js
+6:32:11 PM [vite] (client) page reload tests/intro-review.html
+12:52:08 PM [vite] (client) page reload src/intro/Intro.jsx
+12:52:11 PM [vite] (client) page reload src/intro/Intro.jsx
+12:52:14 PM [vite] (client) hmr update /src/intro/intro.css
+1:00:57 PM [vite] (client) page reload src/intro/Intro.jsx
+1:06:26 PM [vite] (client) page reload src/intro/Intro.jsx

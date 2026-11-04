@@ -1,0 +1,54 @@
+4:45:41 PM [vite] (client) Pre-transform error: Failed to resolve import "./pages/pages.css" from "src/main.jsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: C:/COLORFLU/src/main.jsx:13:7
+  11 |  import PageConnections from "./pages/PageConnections.jsx";
+  12 |  import { routes, resolveRoute } from "./routes.mjs";
+  13 |  import "./pages/pages.css";
+     |          ^
+  14 |  import { artworkKey } from "./studio-data.mjs";
+  15 |  import Intro, { VISIT_KEY } from "./intro/Intro.jsx";
+4:45:41 PM [vite] Internal server error: Failed to resolve import "./pages/pages.css" from "src/main.jsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: C:/COLORFLU/src/main.jsx:13:7
+  11 |  import PageConnections from "./pages/PageConnections.jsx";
+  12 |  import { routes, resolveRoute } from "./routes.mjs";
+  13 |  import "./pages/pages.css";
+     |          ^
+  14 |  import { artworkKey } from "./studio-data.mjs";
+  15 |  import Intro, { VISIT_KEY } from "./intro/Intro.jsx";
+      at TransformPluginContext._formatLog (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:8803:39)
+      at TransformPluginContext.error (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:8800:14)
+      at resolveId (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:26594:18)
+      at async file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:26693:23
+      at async Promise.all (index 12)
+      at async TransformPluginContext.transform (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:26666:4)
+      at async EnvironmentPluginContainer.transform (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:8582:14)
+      at async loadAndTransform (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:20155:26)
+      at async viteTransformMiddleware (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:20375:20)
+4:45:49 PM [vite] (client) Pre-transform error: Failed to resolve import "./pages/pages.css" from "src/main.jsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: C:/COLORFLU/src/main.jsx:13:7
+  11 |  import PageConnections from "./pages/PageConnections.jsx";
+  12 |  import { routes, resolveRoute } from "./routes.mjs";
+  13 |  import "./pages/pages.css";
+     |          ^
+  14 |  import { artworkKey } from "./studio-data.mjs";
+  15 |  import Intro, { VISIT_KEY } from "./intro/Intro.jsx";
+4:45:49 PM [vite] Internal server error: Failed to resolve import "./pages/pages.css" from "src/main.jsx". Does the file exist?
+  Plugin: vite:import-analysis
+  File: C:/COLORFLU/src/main.jsx:13:7
+  11 |  import PageConnections from "./pages/PageConnections.jsx";
+  12 |  import { routes, resolveRoute } from "./routes.mjs";
+  13 |  import "./pages/pages.css";
+     |          ^
+  14 |  import { artworkKey } from "./studio-data.mjs";
+  15 |  import Intro, { VISIT_KEY } from "./intro/Intro.jsx";
+      at TransformPluginContext._formatLog (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:8803:39)
+      at TransformPluginContext.error (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:8800:14)
+      at resolveId (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:26594:18)
+      at async file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:26693:23
+      at async Promise.all (index 12)
+      at async TransformPluginContext.transform (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:26666:4)
+      at async EnvironmentPluginContainer.transform (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:8582:14)
+      at async loadAndTransform (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:20155:26)
+      at async viteTransformMiddleware (file:///C:/COLORFLU/node_modules/.pnpm/vite@8.3.5/node_modules/vite/dist/node/chunks/node.js:20375:20)

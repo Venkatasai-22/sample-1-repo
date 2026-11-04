@@ -1,0 +1,10 @@
+{
+  "mode": "video",
+  "desktop": "/intro/film-to-fabric-web.mp4",
+  "mobile": "/intro/film-to-fabric-mobile.mp4",
+  "fallback": "/intro/film-to-fabric-mobile.mp4",
+  "master": "/intro/film-to-fabric-8k.mp4",
+  "resolution": { "width": 1920, "height": 1080 },
+  "poster": "/intro/film-to-fabric-poster.jpg",
+  "duration": 6
+}

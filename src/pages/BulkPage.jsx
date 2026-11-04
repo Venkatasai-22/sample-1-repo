@@ -1,0 +1,26 @@
+import React, { useState } from 'react';
+import { ArrowRight, Check, Phone, Printer } from 'lucide-react';
+import { garments } from '../studio-data.mjs';
+
+export default function BulkPage() {
+  const equipmentOptions = { printer: 'DTF Printing Systems', inks: 'Premium DTF Inks', film: 'PET Films & Powder', press: 'Heat Press Machines' };
+  const requested = new URLSearchParams(location.search).get('product');
+  const equipment = Object.hasOwn(equipmentOptions, requested) ? requested : null;
+  const [purpose, setPurpose] = useState(equipment ? 'Printing setup' : 'Business uniforms');
+  const [chosen, setChosen] = useState(['T-shirts']);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState('');
+  const toggle = value => setChosen(items => items.includes(value) ? items.filter(item => item !== value) : [...items, value]);
+  const submit = event => {
+    event.preventDefault();
+    if (!equipment && !chosen.length) { setError('Choose at least one garment.'); return; }
+    const data = { ...Object.fromEntries(new FormData(event.currentTarget)), purpose, garments: equipment ? [] : chosen };
+    try { localStorage.setItem('colorflu-enquiry', JSON.stringify(data)); setSaved(true); setError(''); }
+    catch { setError('This browser could not save the enquiry. Please call our team.'); }
+  };
+  return <main className="bulk-page route-page"><section className="section bulk-heading"><p className="eyebrow">COLORFLU / BETTER TOGETHER</p><h1>Bulk Orders</h1><div className="page-heading-bottom"><p>A team of ten. A whole campus. Your next launch.<br/>Bring everyone into the same creative story.</p><a href="tel:07971989850"><Phone size={17}/>07971989850</a></div></section>
+    <section className="section bulk-workspace"><aside className="bulk-planning">{equipment ? <div className="bulk-equipment-visual"><Printer size={100} strokeWidth={1}/><span>{equipmentOptions[equipment]}</span></div> : <img src="/hoodie.jpg" alt="A blank hoodie ready for a coordinated team collection"/>}<div className="bulk-planning-copy"><span>{equipment ? 'MADE FOR YOUR PRODUCTION' : 'MADE FOR YOUR PEOPLE'}</span><h2>{equipment ? <>Your next<br/>production setup.</> : <>One identity.<br/>Many possibilities.</>}</h2><p>{equipment ? 'Tell us your production goals, equipment needs and consumable quantities.' : 'Mix T-shirts, hoodies, sweatshirts and caps in one project brief.'}</p></div><ol className="bulk-steps"><li><span>01</span><div><strong>Share your brief</strong><p>Choose your products and tell us about your project.</p></div></li><li><span>02</span><div><strong>Confirm the details</strong><p>Our team confirms specifications and pricing.</p></div></li><li><span>03</span><div><strong>Make it happen</strong><p>Production begins after you approve the final plan.</p></div></li></ol></aside>
+      {saved ? <div className="bulk-confirmation" role="status"><Check size={36}/><h2>Your demo brief is saved.</h2><p>Saved in this browser only. Nothing has been sent and no order has been placed.</p><button className="primary" onClick={() => setSaved(false)}>Plan another project<ArrowRight size={18}/></button><a href="/design-studio">Explore your design first<ArrowRight size={17}/></a></div> : <form className="bulk-form" onSubmit={submit}><h2>Tell us what you're making.</h2><fieldset><legend>What's the occasion?</legend><div className="bulk-purpose">{(equipment ? ['Printing setup', 'Expand production', 'Consumables restock', 'Technical guidance'] : ['Business uniforms', 'College & teams', 'Events & launches', 'Brand merchandise']).map(item => <button type="button" key={item} aria-pressed={purpose === item} className={purpose === item ? 'active' : ''} onClick={() => setPurpose(item)}>{item}</button>)}</div></fieldset>{equipment ? <label>Printing requirement<select name="interest" defaultValue={equipment}>{Object.entries(equipmentOptions).map(([id, name]) => <option key={id} value={id}>{name}</option>)}</select></label> : <fieldset><legend>Garments</legend><div className="bulk-garments">{garments.map(item => <label key={item.id}><input type="checkbox" checked={chosen.includes(item.label)} onChange={() => toggle(item.label)}/>{item.label}</label>)}</div></fieldset>}
+      <div className="bulk-field-grid"><label>Your name<input required name="name" autoComplete="name"/></label><label>Business or group<input name="organization" autoComplete="organization"/></label><label>Email<input required type="email" name="email" autoComplete="email"/></label><label>Phone<input required type="tel" name="phone" autoComplete="tel"/></label><label>Total quantity<input type="number" required name="quantity" min="1" max="10000" defaultValue="25"/></label><label>Preferred date<input type="date" name="date"/></label></div><label>Project brief<textarea required name="details" rows="4" placeholder="Your design, colors, size breakdown and delivery requirements"/></label>{error && <p role="alert">{error}</p>}<button className="primary full">Save demo brief<ArrowRight size={18}/></button><p className="demo-note">Frontend demo: details stay in your browser. Call our team for a confirmed quotation or production schedule.</p><a className="bulk-equipment-link" href="/print-produce">Looking for machines or consumables instead?<ArrowRight size={16}/></a></form>}
+    </section></main>;
+}

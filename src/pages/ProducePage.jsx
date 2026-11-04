@@ -1,0 +1,17 @@
+import React, { useState } from 'react';
+import { ArrowRight, Check, Search } from 'lucide-react';
+
+export default function ProducePage({ products, onProduct }) {
+  const [category, setCategory] = useState('All');
+  const [query, setQuery] = useState('');
+  const items = products.filter(item => (category === 'All' || item.category === category) && item.name.toLowerCase().includes(query.toLowerCase()));
+  return <main className="produce-page route-page">
+    <section className="section produce-heading"><p className="eyebrow">COLORFLU / PRINTING SOLUTIONS</p><h1>Print & Produce</h1><div className="page-heading-bottom"><p>The equipment. The consumables. The know-how.<br/>Build the print setup that works for your business.</p><a href="/bulk-orders">Discuss your setup<ArrowRight size={18}/></a></div><div className="production-strip">{['Print', 'Powder', 'Cure', 'Press'].map((item, index) => <div key={item}><span>0{index + 1}</span><strong>{item}</strong><ArrowRight size={18}/></div>)}</div></section>
+    <section className="section technical-catalog"><div className="catalog-toolbar"><div className="category-tabs">{['All', 'Equipment', 'Consumables'].map(item => <button key={item} aria-pressed={category === item} className={category === item ? 'active' : ''} onClick={() => setCategory(item)}>{item}</button>)}</div><label className="catalog-search"><Search size={17}/><input type="search" aria-label="Search printing products" placeholder="Search equipment or supplies" value={query} onChange={event => setQuery(event.target.value)}/></label></div>
+      <div className="technical-grid">{items.map((item, index) => <article className={`technical-product technical-${item.id}`} key={item.id}><div className="technical-visual" aria-hidden="true"><item.Icon size={88} strokeWidth={1}/><span>0{index + 1}</span></div><div className="technical-copy"><p className="eyebrow">{item.category}</p><h2>{item.name}</h2><p>{item.desc}</p><div className="technical-product-bottom"><span>Quotation on request</span><button onClick={() => onProduct(item)}>View options<ArrowRight size={17}/></button></div></div></article>)}</div>
+      {!items.length && <p className="catalog-empty">No matching printing products. Try another search.</p>}
+    </section>
+    <section className="production-support"><div><p className="eyebrow">FROM FIRST PRINT TO DAILY PRODUCTION</p><h2>A setup is only<br/>the beginning.</h2><a href="/bulk-orders">Talk to our team<ArrowRight size={18}/></a></div><ul>{['Machine selection for your workflow', 'Installation and operator training', 'Inks, PET film and hot melt powder', 'Technical guidance and after-sales support'].map(item => <li key={item}><Check size={18}/>{item}</li>)}</ul></section>
+    <section className="section production-faq"><h2>Before you choose.</h2><details><summary>Which printing system should I choose?</summary><p>Tell our team about your garment mix, expected print volume and available workspace. We will help you compare suitable setups and confirm specifications.</p></details><details><summary>Can I order consumables separately?</summary><p>Yes. Explore inks, PET films and powder, then enquire about sizes, quantities and compatibility with your equipment.</p></details><details><summary>Can I customize apparel instead of buying equipment?</summary><p>Visit Design Studio to preview a garment, or use Bulk Orders to discuss production with our team.</p><a href="/design-studio">Go to Design Studio<ArrowRight size={16}/></a></details></section>
+  </main>;
+}

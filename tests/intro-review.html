@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ColorFlu intro review</title></head>
+<body>
+  <div id="root"></div>
+  <aside style="position:fixed;z-index:200;bottom:24px;left:16px;max-width:calc(100% - 32px);display:flex;flex-wrap:wrap;gap:6px;background:#fff;padding:8px;color:#111">
+    <button data-time="0.5">Road</button>
+    <button data-time="3.5">Splash</button>
+    <button data-time="5.1">Covered</button>
+    <button data-time="6.6">Wipe</button>
+    <button data-time="8.8">Clear</button>
+    <button id="finish-review">Finish</button>
+    <output id="review-state">Ready</output>
+  </aside>
+  <script type="module">
+    const options = new URLSearchParams(location.search);
+    if (options.has('no-webgl')) {
+      const getContext = HTMLCanvasElement.prototype.getContext;
+      HTMLCanvasElement.prototype.getContext = function(type, ...args) {
+        return type.startsWith('webgl') ? null : getContext.call(this, type, ...args);
+      };
+    }
+    if (options.has('reduced')) {
+      const media = window.matchMedia.bind(window);
+      window.matchMedia = query => query.includes('prefers-reduced-motion')
+        ? { matches: true, addEventListener() {}, removeEventListener() {} }
+        : media(query);
+    }
+    if (options.has('missing-video')) {
+      const fetchOriginal = window.fetch.bind(window);
+      window.fetch = async (...args) => {
+        const response = await fetchOriginal(...args);
+        if (args[0] !== '/intro/film.json') return response;
+        const config = await response.json();
+        config.desktop = config.mobile = '/intro/missing.mp4';
+        return new Response(JSON.stringify(config));
+      };
+    }
+    await import('/src/main.jsx');
+    async function seek(time) {
+      let video = document.querySelector('.cinema-video');
+      if (!video) document.querySelector('[aria-label="Replay brand intro"]').click();
+      const deadline = performance.now() + 6000;
+      while (!(video = document.querySelector('.cinema-video')) || video.readyState < 2) {
+        if (performance.now() > deadline) throw new Error('Film not ready');
+        await new Promise(resolve => requestAnimationFrame(resolve));
+      }
+      video.pause();
+      video.currentTime = time;
+      await new Promise(resolve => video.addEventListener('seeked', resolve, { once: true }));
+      const pixels = await new Promise(resolve => requestAnimationFrame(() => {
+        const canvas = document.querySelector('.cinema-film-canvas canvas');
+        const gl = canvas?.getContext('webgl2');
+        if (!gl) return resolve([]);
+        resolve([[.01,.01],[.99,.01],[.01,.99],[.99,.99],[.5,.6]].map(([x,y]) => {
+          const pixel = new Uint8Array(4);
+          gl.readPixels(Math.floor(canvas.width*x), Math.floor(canvas.height*y), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+          return [...pixel];
+        }));
+      }));
+      document.querySelector('#review-state').dataset.pixels = JSON.stringify(pixels);
+      document.querySelector('#review-state').value = `${time.toFixed(1)}s`;
+    }
+    document.querySelectorAll('[data-time]').forEach(button => {
+      button.onclick = () => seek(Number(button.dataset.time)).catch(error => {
+        document.querySelector('#review-state').value = error.message;
+      });
+    });
+    document.querySelector('#finish-review').onclick = () => document.querySelector('.cinema-skip')?.click();
+  </script>
+</body>
+</html>
